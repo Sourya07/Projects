@@ -1,24 +1,23 @@
-//   HOW TO USE PICK 
-//   It is used to select the only input that you want to change  
+//  Partial makes all properties of atype optiona; , creating a type with the smae properties , but each marked as optional
 
-interface User {
+/// it is useful when you want to do updates 
+
+
+interface User{
     id:number;
     name:string;
+    age:string;
     email:string;
-    createdAt:Date;
-
+    password:string;
 }
 
-type UserProfile =  Pick<User, 'name' | 'email'>
 
-//  here we are selecting only name and email from user interface
-function displaying (user: UserProfile){
-console.log(`NAME is ${user.name},Email: ${user.email}`)
+type UpdatePropos = Partial<(Pick<User, 'name' | 'age' |'email'>)>
+
+function updateUser(user: UpdatePropos){
+console.log(`my name is ${user.name}`)
 }
 
-displaying({
-   
-    name:'Rahul',
-    email:'rahul@gmail.com',
- 
+updateUser({
+    name:'sai',
 })

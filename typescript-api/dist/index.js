@@ -1,11 +1,8 @@
 "use strict";
-//   HOW TO USE PICK 
-//   It is used to select the only input that you want to change  
-//  here we are selecting only name and email from user interface
-function displaying(user) {
-    console.log(`NAME is ${user.name},Email: ${user.email}`);
+//  Partial makes all properties of atype optiona; , creating a type with the smae properties , but each marked as optional
+function updateUser(user) {
+    console.log(`my name is ${user.name}`);
 }
-displaying({
-    name: 'Rahul',
-    email: 'rahul@gmail.com',
+updateUser({
+    name: 'sai',
 });
