@@ -1,15 +1,17 @@
-///  Record 
-///  A record is a collection of fields, each of which has a name and a value.
+// Map
+// maps gives you an even fancier way to deal with objects. very similar to maps  in c++
 
-interface Data{
+interface Obj{
     id:string;
     name:string;
 }
 
-type Users = Record<string,Data>;
-const users: Users = {
-    'abc123': { id: 'abc123', name: 'raj' },
-    'xyz789': { id: 'xyz789', name: 'priyanshu' },
-  };
-  
-  console.log(users['abc123']); 
+//Initialize an empty MAP
+ const userMap = new Map<string,Obj>()
+
+//Add obk to the map using set
+
+userMap.set('1', {id:'1', name:'John'})
+userMap.set('2', {id:'2', name:'Jane'})
+
+console.log(userMap.get('1'))
