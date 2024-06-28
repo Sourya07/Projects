@@ -1,23 +1,15 @@
-//  Partial makes all properties of atype optiona; , creating a type with the smae properties , but each marked as optional
+///  Record 
+///  A record is a collection of fields, each of which has a name and a value.
 
-/// it is useful when you want to do updates 
-
-
-interface User{
-    id:number;
+interface Data{
+    id:string;
     name:string;
-    age:string;
-    email:string;
-    password:string;
 }
 
-
-type UpdatePropos = Partial<(Pick<User, 'name' | 'age' |'email'>)>
-
-function updateUser(user: UpdatePropos){
-console.log(`my name is ${user.name}`)
-}
-
-updateUser({
-    name:'sai',
-})
+type Users = Record<string,Data>;
+const users: Users = {
+    'abc123': { id: 'abc123', name: 'raj' },
+    'xyz789': { id: 'xyz789', name: 'priyanshu' },
+  };
+  
+  console.log(users['abc123']); 
