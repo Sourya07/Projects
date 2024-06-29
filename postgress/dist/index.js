@@ -10,32 +10,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = require("pg");
-// Async function to fetch user data from the database given an email
-function getUser(email) {
+// Async function to insert data into a table
+function insertData(username, email, password) {
     return __awaiter(this, void 0, void 0, function* () {
         const client = new pg_1.Client({
-            connectionString: 'postgres://db_owner:89cUHVLqRCaG@ep-crimson-feather-a5fbf8ow.us-east-2.aws.neon.tech:5432/db',
-            ssl: {
-                rejectUnauthorized: false // Use this for self-signed certificates
-            }
+            host: 'localhost',
+            port: 5432,
+            database: 'postgres',
+            user: 'postgres',
+            password: 'mysecretpassword',
         });
         try {
             yield client.connect(); // Ensure client connection is established
-            const query = 'SELECT * FROM users WHERE email = $1';
-            const values = [email];
-            const result = yield client.query(query, values);
-            if (result.rows.length > 0) {
-                console.log('User found:', result.rows[0]); // Output user data
-                return result.rows[0]; // Return the user data
-            }
-            else {
-                console.log('No user found with the given email.');
-                return null; // Return null if no user was found
-            }
+            // Use parameterized query to prevent SQL injection
+            const insertQuery = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3)";
+            const values = [username, email, password];
+            const res = yield client.query(insertQuery, values);
+            console.log('Insertion success:', res); // Output insertion result
         }
         catch (err) {
-            console.error('Error during fetching user:', err);
-            throw err; // Rethrow or handle error appropriately
+            console.error('Error during the insertion:', err);
         }
         finally {
             yield client.end(); // Close the client connection
@@ -43,4 +37,4 @@ function getUser(email) {
     });
 }
 // Example usage
-getUser('user5@example.com').catch(console.error);
+insertData('username77', 'user9@example.com', 'user_password').catch(console.error);
