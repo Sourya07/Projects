@@ -15,3 +15,6 @@ userMap.set('1', {id:'1', name:'John'})
 userMap.set('2', {id:'2', name:'Jane'})
 
 console.log(userMap.get('1'))
+
+
+  
